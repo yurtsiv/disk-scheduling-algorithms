@@ -3,7 +3,6 @@ package request;
 public class Request {
     private int id, arrivalTime, diskLocation;
 
-
     public Request(int id, int diskLocation, int arrivalTime) {
         this.id = id;
         this.diskLocation = diskLocation;
@@ -19,8 +18,8 @@ public class Request {
         return diskLocation;
     }
 
-    public int getId() {
-        return id;
+    public Request clone() {
+        return new Request(id, diskLocation, arrivalTime);
     }
 }
 
