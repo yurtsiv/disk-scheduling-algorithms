@@ -1,6 +1,7 @@
 import request.Request;
 import request.RequestsGenerator;
 import scheduler.FCFS;
+import scheduler.SCAN;
 import scheduler.SSTF;
 import scheduler.Scheduler;
 import util.RandomNums;
@@ -34,11 +35,15 @@ public class Main {
 
         ArrayList<Integer> fcfsResult = scheduler.run(generatedSeries, initialHeadPosition, new FCFS());
         ArrayList<Integer> sstfResult = scheduler.run(generatedSeries, initialHeadPosition, new SSTF());
+        ArrayList<Integer> scanResult = scheduler.run(generatedSeries, initialHeadPosition, new SCAN());
 
         System.out.println("FCFS result:");
         ResultsAnalyzer.analyzeAndPrint(fcfsResult);
 
         System.out.println("SSTF result:");
         ResultsAnalyzer.analyzeAndPrint(sstfResult);
+
+        System.out.println("SCAN result:");
+        ResultsAnalyzer.analyzeAndPrint(scanResult);
     }
 }
