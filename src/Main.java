@@ -1,9 +1,6 @@
 import request.Request;
 import request.RequestsGenerator;
-import scheduler.FCFS;
-import scheduler.SCAN;
-import scheduler.SSTF;
-import scheduler.Scheduler;
+import scheduler.*;
 import util.RandomNums;
 import util.ResultsAnalyzer;
 
@@ -36,6 +33,7 @@ public class Main {
         ArrayList<Integer> fcfsResult = scheduler.run(generatedSeries, initialHeadPosition, new FCFS());
         ArrayList<Integer> sstfResult = scheduler.run(generatedSeries, initialHeadPosition, new SSTF());
         ArrayList<Integer> scanResult = scheduler.run(generatedSeries, initialHeadPosition, new SCAN());
+        ArrayList<Integer> cscanResult = scheduler.run(generatedSeries, initialHeadPosition, new CSCAN());
 
         System.out.println("FCFS result:");
         ResultsAnalyzer.analyzeAndPrint(fcfsResult);
@@ -45,5 +43,8 @@ public class Main {
 
         System.out.println("SCAN result:");
         ResultsAnalyzer.analyzeAndPrint(scanResult);
+
+        System.out.println("C-SCAN result:");
+        ResultsAnalyzer.analyzeAndPrint(cscanResult);
     }
 }
