@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class FDSCAN implements ScheduleAlgorithm {
+    // all requests that are between current head position and top priority request
     private ArrayList<Request> reqsBeforeTopPrior = new ArrayList<>();
     private Request topPriorityReq = null;
     private SCAN scan = new SCAN();

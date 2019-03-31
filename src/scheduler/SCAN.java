@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class SCAN implements ScheduleAlgorithm {
+    // 1 - right, (-1) - left
     private int headMoveDirection = 1;
 
     public void setMoveDirection(int direction) {
