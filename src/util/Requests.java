@@ -3,6 +3,7 @@ package util;
 import request.Request;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Requests {
     public static Request findNearestToHead(ArrayList<Request> requests, int headPosition) {
@@ -19,4 +20,12 @@ public class Requests {
 
         return nearestRequest;
     }
+
+    public static Request findTopPriorityRequest(ArrayList<Request> requests) {
+        return requests
+                .stream()
+                .max(Comparator.comparing(Request::getPriority))
+                .orElse(null);
+    }
+
 }

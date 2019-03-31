@@ -9,6 +9,10 @@ public class Request {
         this.arrivalTime = arrivalTime;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public int getArrivalTime() {
         return arrivalTime;
     }

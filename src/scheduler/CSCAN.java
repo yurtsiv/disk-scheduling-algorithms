@@ -30,7 +30,8 @@ public class CSCAN implements ScheduleAlgorithm {
         return Requests.findNearestToHead(nearestCandidates, headPosition);
     }
 
-    public Request getNextRequest(ArrayList<Request> activeRequests, int currentHeadPosition, ArrayList<Integer> headPath) {
+    @Override
+    public Request getNextRequest(ArrayList<Request> activeRequests, int currentHeadPosition) {
         return findNearestToTheRight(activeRequests, currentHeadPosition);
     }
 }

@@ -9,6 +9,10 @@ import java.util.stream.Collectors;
 public class SCAN implements ScheduleAlgorithm {
     private int headMoveDirection = 1;
 
+    public void setMoveDirection(int direction) {
+        headMoveDirection = direction;
+    }
+
     private Request findNearestInMoveDirection(ArrayList<Request> activeRequests, int headPosition) {
        ArrayList<Request> nearestCandidates =
             activeRequests
@@ -30,7 +34,8 @@ public class SCAN implements ScheduleAlgorithm {
        return Requests.findNearestToHead(nearestCandidates, headPosition);
     }
 
-    public Request getNextRequest(ArrayList<Request> activeRequests, int currentHeadPosition, ArrayList<Integer> headPath) {
+    @Override
+    public Request getNextRequest(ArrayList<Request> activeRequests, int currentHeadPosition) {
         return findNearestInMoveDirection(activeRequests, currentHeadPosition);
     }
 }

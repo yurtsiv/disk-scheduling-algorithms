@@ -3,7 +3,6 @@ import request.RequestsGenerator;
 import scheduler.*;
 import util.RandomNums;
 import util.ResultsAnalyzer;
-
 import java.util.ArrayList;
 
 public class Main {
@@ -11,13 +10,13 @@ public class Main {
         seriesLength = 10,
         maxDiskLocation = 100,
         maxArrivalTime = 0,
-        priorityRequests = 0;
+        priorityRequests = 10;
 
 
     private static void printRequests(ArrayList<Request> requests) {
         requests.sort((req1, req2) -> req1.getArrivalTime() - req2.getArrivalTime());
         for (Request request : requests) {
-            System.out.println("Time: " + request.getArrivalTime() + "; Address: " + request.getDiskLocation() + "; Priority: " + request.getPriority());
+            System.out.println("ID: " + request.getId() + "; Time: " + request.getArrivalTime() + "; Address: " + request.getDiskLocation() + "; Priority: " + request.getPriority());
             System.out.println("-----------");
         }
         System.out.println();
@@ -43,6 +42,7 @@ public class Main {
         ArrayList<Integer> scanResult = scheduler.run(generatedSeries, initialHeadPosition, new SCAN());
         ArrayList<Integer> cscanResult = scheduler.run(generatedSeries, initialHeadPosition, new CSCAN());
         ArrayList<Integer> edfResult = scheduler.run(generatedSeries, initialHeadPosition, new EDF());
+        ArrayList<Integer> fdscanResult = scheduler.run(generatedSeries, initialHeadPosition, new FDSCAN());
 
         System.out.println("FCFS result:");
         ResultsAnalyzer.analyzeAndPrint(fcfsResult);
@@ -58,5 +58,8 @@ public class Main {
 
         System.out.println("EDF result:");
         ResultsAnalyzer.analyzeAndPrint(edfResult);
+
+        System.out.println("FD-SCAN result:");
+        ResultsAnalyzer.analyzeAndPrint(fdscanResult);
     }
 }
