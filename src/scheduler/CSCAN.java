@@ -16,7 +16,7 @@ public class CSCAN implements ScheduleAlgorithm {
             .orElseThrow(NoSuchElementException::new);
     }
 
-    private Request findNearestInMoveDirection(ArrayList<Request> activeRequests, int headPosition) {
+    private Request findNearestToTheRight(ArrayList<Request> activeRequests, int headPosition) {
         ArrayList<Request> nearestCandidates =
             activeRequests
                 .stream()
@@ -30,9 +30,7 @@ public class CSCAN implements ScheduleAlgorithm {
         return Requests.findNearestToHead(nearestCandidates, headPosition);
     }
 
-    public void serve(ArrayList<Request> activeRequests, int currentHeadPosition, ArrayList<Integer> headPath) {
-        Request currentRequest = findNearestInMoveDirection(activeRequests, currentHeadPosition);
-        headPath.add(currentRequest.getDiskLocation());
-        activeRequests.remove(currentRequest);
+    public Request getNextRequest(ArrayList<Request> activeRequests, int currentHeadPosition, ArrayList<Integer> headPath) {
+        return findNearestToTheRight(activeRequests, currentHeadPosition);
     }
 }

@@ -69,10 +69,12 @@ public class Scheduler {
             addNewRequestsToActiveQueue();
 
             if (activeRequests.size() != 0) {
-                algorithm.serve(activeRequests, currentHeadPosition, headPath);
+                Request nextReq = algorithm.getNextRequest(activeRequests, currentHeadPosition, headPath);
+                currentHeadPosition = nextReq.getDiskLocation();
+                headPath.add(nextReq.getDiskLocation());
+                activeRequests.remove(nextReq);
             }
 
-            currentHeadPosition = headPath.get(headPath.size() - 1);
             currentTime++;
         }
 

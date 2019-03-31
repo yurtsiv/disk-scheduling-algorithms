@@ -1,14 +1,13 @@
 package request;
 
 public class Request {
-    private int id, arrivalTime, diskLocation;
+    private int id, arrivalTime, diskLocation, priority = 0;
 
     public Request(int id, int diskLocation, int arrivalTime) {
         this.id = id;
         this.diskLocation = diskLocation;
         this.arrivalTime = arrivalTime;
     }
-
 
     public int getArrivalTime() {
         return arrivalTime;
@@ -18,8 +17,18 @@ public class Request {
         return diskLocation;
     }
 
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
     public Request clone() {
-        return new Request(id, diskLocation, arrivalTime);
+        Request res =  new Request(id, diskLocation, arrivalTime);
+        res.setPriority(priority);
+        return res;
     }
 }
 
