@@ -5,7 +5,6 @@ import util.Requests;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class CSCAN implements ScheduleAlgorithm {
@@ -13,7 +12,7 @@ public class CSCAN implements ScheduleAlgorithm {
         return requests
             .stream()
             .min(Comparator.comparing(Request::getDiskLocation))
-            .orElseThrow(NoSuchElementException::new);
+            .orElse(null);
     }
 
     private Request findNearestToTheRight(ArrayList<Request> activeRequests, int headPosition) {
